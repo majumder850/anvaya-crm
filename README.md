@@ -85,4 +85,4 @@ npm install
 - **GitHub:** [@majumder850](https://github.com/majumder850)
 - **Email:** [debojyotimajumder850@gmail.com](mailto:debojyotimajumder850@gmail.com)
 - **Project Repository:** [https://github.com/majumder850/anvaya-crm](https://github.com/majumder850/anvaya-crm)
-- **Live Demo:** [https://anvaya-crm.vercel.app](https://anvaya-crm.vercel.app)
+- **Live Demo:** [https://anvaya-crm-front-end.vercel.app](https://anvaya-crm-front-end.vercel.app)
