@@ -1,64 +1,88 @@
-# Anvaya CRM — Frontend Application
+# Anvaya CRM — Frontend
 
-Anvaya CRM is a sales pipeline and lead management single-page application built with React, React Router v6, and Bootstrap 5[cite: 11]. It communicates with a backend REST API hosted at [https://anvaya-crm-phase-2.vercel.app/api](https://anvaya-crm-phase-2.vercel.app/api).
+A single-page CRM application built with React, Bootstrap, and React Router to track sales pipelines, monitor lead stages, assign agents, and analyze closure rates.
+
+Connected to a REST backend deployed on Vercel backed by MongoDB.
 
 ---
 
-## Features
+## Live Links & Repositories
 
-### 1. Dashboard (`/`)
+- **Live App:** [anvaya-crm.vercel.app](https://anvaya-crm.vercel.app)
+- **Frontend Repo:** [github.com/majumder850/anvaya-crm](https://github.com/majumder850/anvaya-crm)
+- **Backend API:** [anvaya-crm-phase-2.vercel.app](https://anvaya-crm-phase-2.vercel.app)
+- **Backend Repo:** [github.com/majumder850/anvaya-crm-backend](https://github.com/majumder850/anvaya-crm-backend)
 
-- Summary cards showing lead counts per lifecycle stage (`New`, `Contacted`, `Qualified`, `Proposal Sent`, `Closed`).
-- Quick-filter toggle buttons for all 5 stages.
-- Recent leads preview cards linking directly to lead management details.
+---
 
-### 2. Lead List Overview (`/leads`)
+## Core Features
 
-- Full lead ledger displaying lead name, source, priority, turnaround days, status badge, and assigned sales agent.
-- Filter by **Status**, **Source**, **Sales Agent**, and **Tags**
-- Sort by **Priority** (High to Low) and **Time to Close** (Ascending).
-- **URL Parameter Synchronization:** Active filters and sort states are kept in sync with browser query params using `useSearchParams`.
+- **Dashboard:** Overview cards showing total leads grouped across all 5 stages (`New`, `Contacted`, `Qualified`, `Proposal Sent`, `Closed`) with quick toggle filters and recent leads.
+- **Lead Directory & Filters:** View all leads with real-time filtering by status, source, sales rep, and tags. Supports sorting by priority or time-to-close. Filters are synchronized with URL query params via `useSearchParams`.
+- **Lead Detail & Activity Log:** Edit lead details directly in place (reassign agents, update priority, add tags). Includes an activity feed for logging timestamped comments and progress updates.
+- **Custom Pipeline Views:**
+  - Status breakdown page to inspect pipeline stages independently.
+  - Dedicated agent view to evaluate performance and assigned leads per rep.
+- **Agent Directory:** Manage sales reps and register new team members.
+- **Reports & Metrics:** Visual reports tracking total pipeline volume, closed lead counts, agent distribution, and 7-day closing velocity.
+- **UI/UX:** Fully responsive layout with mobile drawer navigation and non-blocking toast notifications for CRUD actions.
 
-### 3. Lead Management & Details (`/leads/:leadId`)
-
-- View full lead metadata, including tag badges.
-- In-place editing mode supporting lead name, sales agent assignment, lead source, status, priority, time to close, and comma-separated tags.
-- Threaded activity/comment feed with author name and timestamp.
-- Precise error messages on failed comment submissions.
-
-### 4. Segmented Pipeline Views
-
-- **Leads by Status (`/leads/status`):** Tabbed interface filtering leads by status stage with secondary agent and priority filters.
-- **Sales Agent View (`/agents/view`):** Agent dropdown selector to inspect leads assigned to a specific representative.
-
-### 5. Sales Agent Directory (`/agents`)
-
-- Roster of all registered agents with unique email and date joined.
-- Form to register new agents.
-
-### 6. Reports & Analytics (`/reports`)
-
-- KPI cards for active pipeline volume and total closed deals.
-- Visual charts for:
-  - Lead Status Distribution.
-  - Closed Leads by Sales Agent.
-  - Rolling 7-Day closure velocity.
-
-### 7. Responsive Mobile Layout
-
-- Collapsible hamburger menu on smaller viewports for seamless navigation across all views.
-- Non-blocking toast notifications for success and error messages instead of browser alerts.
+---
 
 ## Tech Stack
 
-- **Framework:** React 18
-- **Routing:** React Router v6
-- **Styling:** Bootstrap 5
-- **Backend API:** [https://anvaya-crm-phase-2.vercel.app/api](https://anvaya-crm-phase-2.vercel.app/api)
+- **Client:** React 19, React Router v7, Bootstrap 5
+- **Server:** Node.js, Express.js
+- **Database:** MongoDB & Mongoose
+- **Deployment:** Vercel
 
-## Getting Started
+---
 
-### Prerequisites
+## API Reference
 
-- Node.js (v16 or higher)
-- npm or yarn
+Base Endpoint: `https://anvaya-crm-phase-2.vercel.app/api`
+
+### 1. Leads
+
+- `GET /leads` — Fetch all leads
+- `POST /leads` — Create a lead (`name`, `source`, `salesAgent`, `status`, `priority`, `timeToClose`, `tags`)
+- `GET /leads/:id` — Fetch a single lead by ID
+- `PUT /leads/:id` — Update lead properties
+- `DELETE /leads/:id` — Remove a lead
+
+### 2. Comments & Activity
+
+- `GET /leads/:id/comments` — Get comment thread for a lead
+- `POST /leads/:id/comments` — Add a comment (`commentText`, `author`)
+
+### 3. Sales Agents
+
+- `GET /agents` — Fetch all sales agents
+- `POST /agents` — Add a new sales agent (`name`, `email`)
+
+### 4. Reports
+
+- `GET /report/pipeline` — Get active lead counts (excluding closed)
+- `GET /report/last-week` — Get leads closed within the last 7 days
+
+---
+
+## Quick Start
+
+### Frontend Setup
+
+Clone the repo and install dependencies:
+
+bash
+git clone [https://github.com/majumder850/anvaya-crm.git](https://github.com/majumder850/anvaya-crm.git)
+cd anvaya-crm
+npm install
+
+## 📬 Contact
+
+**Debojyoti Majumder**
+
+- **GitHub:** [@majumder850](https://github.com/majumder850)
+- **Email:** [debojyotimajumder850@gmail.com](mailto:debojyotimajumder850@gmail.com)
+- **Project Repository:** [https://github.com/majumder850/anvaya-crm](https://github.com/majumder850/anvaya-crm)
+- **Live Demo:** [https://anvaya-crm.vercel.app](https://anvaya-crm.vercel.app)
